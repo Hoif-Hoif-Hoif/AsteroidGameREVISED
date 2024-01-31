@@ -1,0 +1,14 @@
+fileFormatVersion: 2
+guid: 0189acb3429f0d6498449d310c559376
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences:
+  - m_ViewDataDictionary: {instanceID: 0}
+  - entityAsteroid: {fileID: 11400000, guid: 8e4014521792d854c9d9cb094d4d3e09, type: 2}
+  - entitySpaceship: {fileID: 11400000, guid: 007106e6e82c7924d84f8de1473895f4, type: 2}
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
