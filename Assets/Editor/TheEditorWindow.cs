@@ -112,7 +112,6 @@ public class TheEditorWindow : EditorWindow
             {
                 Selection.activeTransform.GetComponent<Asteroid>().entity.speed = float.Parse(asteroidSpeedField.value);
                 Selection.activeTransform.GetComponent<Asteroid>().entity.hitPoints = int.Parse(shipHitPointsField.value);
-                //
             }
         }
 
