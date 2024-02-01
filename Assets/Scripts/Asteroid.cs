@@ -10,14 +10,11 @@ public class Asteroid : MonoBehaviour
 
     private Vector2 target;
 
-    void Start()
-    {
-        hitPoints = entity.hitPoints;
-    }
-
-    public void InitiateAsteroid(Vector2 spaceshipPosition)
+    public void InitiateAsteroid(Vector2 spaceshipPosition, Entity asteroidVariant)
     {
         target = spaceshipPosition;
+        entity = asteroidVariant;
+        hitPoints = entity.hitPoints;
     }
 
     private void OnCollisionEnter2D(Collision2D collision)

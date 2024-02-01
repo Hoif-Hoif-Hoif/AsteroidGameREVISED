@@ -10,9 +10,9 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 54929f4be6c0115428ed5f95c73c7fe6, type: 3}
-  m_Name: Entity_Asteroid
+  m_Name: Entity_AsteroidMedium
   m_EditorClassIdentifier: 
-  debugName: Base Asteroid
-  hitPoints: 4
+  debugName: MEDIUM Asteroid
+  hitPoints: 2
   damage: 1
-  speed: 20
+  speed: 1.5

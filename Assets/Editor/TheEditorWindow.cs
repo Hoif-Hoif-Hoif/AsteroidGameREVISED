@@ -14,6 +14,8 @@ public class TheEditorWindow : EditorWindow
         wnd.titleContent = new GUIContent("TheEditorWindow");
     }
 
+    public Label asteroidNameLabel;
+
     public TextField shipSpeedField;
     public TextField asteroidSpeedField;
     public TextField asteroidHitPointsField;
@@ -21,6 +23,8 @@ public class TheEditorWindow : EditorWindow
 
     public Entity entityAsteroid;
     public Entity entitySpaceship;
+
+    public Entity asteroidVariant;
 
     public void CreateGUI()
     {
@@ -36,6 +40,14 @@ public class TheEditorWindow : EditorWindow
         shipSpeedField = new TextField();
         root.Add(shipSpeedField);
 
+        VisualElement shipHitPointsLabel = new Label("Ship HP:");
+        root.Add(shipHitPointsLabel);
+        shipHitPointsField = new TextField();
+        root.Add(shipHitPointsField);
+
+        asteroidNameLabel = new Label("No Asteroid Selected");
+        root.Add(asteroidNameLabel);
+
         VisualElement asteroidSpeedLabel = new Label("Asteroid Speed:");
         root.Add(asteroidSpeedLabel);
         asteroidSpeedField = new TextField();
@@ -45,11 +57,6 @@ public class TheEditorWindow : EditorWindow
         root.Add(asteroidHitPointsLabel);
         asteroidHitPointsField = new TextField();
         root.Add(asteroidHitPointsField);
-
-        VisualElement shipHitPointsLabel = new Label("Ship HP:");
-        root.Add(shipHitPointsLabel);
-        shipHitPointsField = new TextField();
-        root.Add(shipHitPointsField);
 
         ///////
         Button destroyAsteroidsButton = new Button(DestroyAsteroids);
@@ -65,6 +72,14 @@ public class TheEditorWindow : EditorWindow
         shipHitPointsField.value = entitySpaceship.hitPoints.ToString();
     }
 
+    void OnGUI()
+    {
+        Event currentEvent = Event.current;
+        if (currentEvent.type == EventType.MouseDown)
+        {
+            UpdateText();
+        }
+    }
 
     public void DestroyAsteroids()
     {
@@ -74,12 +89,39 @@ public class TheEditorWindow : EditorWindow
         }
     }
 
-    public void Refresh()
+    public void UpdateText()
     {
-        entityAsteroid.speed = float.Parse(asteroidSpeedField.value);
-        entitySpaceship.speed = float.Parse(shipSpeedField.value);
-        entityAsteroid.hitPoints = int.Parse(asteroidHitPointsField.value);
-        entitySpaceship.hitPoints = int.Parse(shipHitPointsField.value);
+        if (Selection.activeTransform != null)
+        {
+            if (Selection.activeTransform.gameObject.GetComponent<Asteroid>() != null)
+            {
+                asteroidVariant = Selection.activeTransform.GetComponent<Asteroid>().entity;
+
+                asteroidNameLabel.text = Selection.activeTransform.GetComponent<Asteroid>().entity.debugName;
+                asteroidSpeedField.value = Selection.activeTransform.GetComponent<Asteroid>().entity.speed.ToString();
+                asteroidHitPointsField.value = Selection.activeTransform.GetComponent<Asteroid>().entity.hitPoints.ToString();
+            }
+        }
     }
 
+    public void Refresh()
+    {
+        if (Selection.activeTransform != null)
+        {
+            if (Selection.activeTransform.gameObject.GetComponent<Asteroid>() != null)
+            {
+                Selection.activeTransform.GetComponent<Asteroid>().entity.speed = float.Parse(asteroidSpeedField.value);
+                Selection.activeTransform.GetComponent<Asteroid>().entity.hitPoints = int.Parse(shipHitPointsField.value);
+                //
+            }
+        }
+
+        else
+        {
+            asteroidNameLabel.text = "No Asteroid Selected";
+        }
+
+        entitySpaceship.speed = float.Parse(shipSpeedField.value);
+        entitySpaceship.hitPoints = int.Parse(shipHitPointsField.value);
+    }
 }

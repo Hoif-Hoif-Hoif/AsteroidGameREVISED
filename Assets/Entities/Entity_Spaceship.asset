@@ -12,7 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 54929f4be6c0115428ed5f95c73c7fe6, type: 3}
   m_Name: Entity_Spaceship
   m_EditorClassIdentifier: 
-  hitPoints: 3
+  hitPoints: 20
   damage: 1
   speed: 7.5
-  lifeTime: 0

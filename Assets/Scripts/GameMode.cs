@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class GameMode : MonoBehaviour
 {
+    public Entity[] asteroidVariants = new Entity[3];
+
     public Transform spawnPoints;
     public Spaceship spaceship;
     public float startTime = 3;
@@ -35,8 +37,9 @@ public class GameMode : MonoBehaviour
     void SpawnAsteroid()
     {
         int rngIndex = Random.Range(0, asteroidSpawnPositions.Length-1);
+        int rngVariant = Random.Range(0, asteroidVariants.Length - 1);
         GameObject instanceAsteroid = Instantiate(prefabAsteroid, asteroidSpawnPositions[rngIndex], spaceship.transform.rotation);
-        instanceAsteroid.GetComponent<Asteroid>().InitiateAsteroid(spaceship.transform.position);
+        instanceAsteroid.GetComponent<Asteroid>().InitiateAsteroid(spaceship.transform.position, asteroidVariants[rngVariant]);
     }
 
     void FixedUpdate()
